@@ -499,7 +499,7 @@ class DataCenter(object):
             datacenter 
         :rtype: :py:class:`list` of :py:class:`dict`\s
         """
-        j, _ = self.request('GET', '/datasets')
+        j, _ = self.request('GET', '/images')
         if search:
             return list(search_dicts(j, search, fields))
         else:
@@ -522,7 +522,7 @@ class DataCenter(object):
         """
         if isinstance(identifier, dict):
             identifier = identifier.get('id', identifier['urn'])
-        j, _ = self.request('GET', '/datasets/' + str(identifier))
+        j, _ = self.request('GET', '/images/' + str(identifier))
         return j
 
     def packages(self, name=None, memory=None, disk=None, swap=None,
