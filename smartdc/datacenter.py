@@ -853,7 +853,7 @@ class DataCenter(object):
                 params['networks'] = networks
             elif isinstance(networks, basestring):
                 params['networks'] = [networks]
-        j, r = self.request('POST', 'machines', data=params)
+        j, r = self.request('POST', '/machines', data=params)
         if r.status_code >= 400:
             print(j, file=sys.stderr)
             r.raise_for_status()
