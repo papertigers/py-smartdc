@@ -138,8 +138,11 @@ class Machine(object):
         """
         self.name = data.get('name')
         self.type = data.get('type')
+        self.brand = data.get('brand')
         self.state = data.get('state')
-        self.dataset = data.get('dataset')
+        self.dataset = data.get('image')
+        self.image = data.get('image')
+        self.package = data.get('package')
         self.memory = data.get('memory')
         self.disk = data.get('disk')
         self._ips = data.get('ips', [])
@@ -147,6 +150,11 @@ class Machine(object):
         if not hasattr(self, '_credentials'):
             self._credentials = {}
         self._credentials.update(self.metadata.pop('credentials', {}))
+        try:
+            self.primaryIp = data.get('primaryIp')
+        except AttributeError:
+            pass
+        self.compute_node = data.get('compute_node')
         self.boot_script = self.metadata.pop('user-script', None)
         self.created = dt_time(data.get('created'))
         self.updated = dt_time(data.get('updated', data.get('created')))
