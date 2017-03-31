@@ -146,6 +146,7 @@ class Machine(object):
         self.memory = data.get('memory')
         self.disk = data.get('disk')
         self._ips = data.get('ips', [])
+        self.tags = data.get('tags', [])
         self.metadata = data.get('metadata', {})
         if not hasattr(self, '_credentials'):
             self._credentials = {}
